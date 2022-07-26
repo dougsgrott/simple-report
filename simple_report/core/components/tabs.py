@@ -1,7 +1,7 @@
 import uuid
 from jinja2 import Environment, FileSystemLoader
 
-from simple_report.core.elements.base import BaseElement
+from simple_report.core.components.base import BaseElement
 
 env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
 
@@ -10,7 +10,9 @@ class Tabs(BaseElement):
     def __init__(self, content, use_tabs, **kwargs):
         super().__init__(**kwargs)
         self.use_tabs = use_tabs
-        self.content = content
+        self.content = dict()
+        for name, value in content.items():
+            self.content[name] = value if isinstance(value, list) else [value]
 
     def to_html(self):
         tabs_id = uuid.uuid4().hex[:10].upper()

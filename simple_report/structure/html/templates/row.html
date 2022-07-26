@@ -2,7 +2,9 @@
     <div class="row">
         {% for item in children %}
         <div class="col {% if show_border %} border {% endif %}>">
-            {{ item.to_html() }}
+            {% for _content in item %}
+            {{ _content.to_html() }}
+            {% endfor %}
         </div>
         {% endfor %}
     </div>

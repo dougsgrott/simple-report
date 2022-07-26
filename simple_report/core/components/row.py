@@ -1,13 +1,13 @@
 
 from jinja2 import Environment, FileSystemLoader
-from simple_report.core.elements.base import BaseElement
+from simple_report.core.components.base import BaseElement
 
 env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
 
 class Row(BaseElement):
     def __init__(self, *children, show_border=False, **kwargs):
         super().__init__(**kwargs)
-        self.children = children
+        self.children = [value if isinstance(value, list) else [value] for value in children]
         self.show_border = show_border
 
     def to_html(self):
