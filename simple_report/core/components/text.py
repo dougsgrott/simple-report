@@ -3,7 +3,7 @@ from abc import ABC
 
 from jinja2 import Environment, FileSystemLoader
 
-from simple_report.core.elements.base import BaseElement
+from simple_report.core.components.base import BaseElement
 
 env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
 
