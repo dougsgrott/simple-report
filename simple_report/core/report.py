@@ -9,6 +9,7 @@ path = str(Path(Path(__file__).parent.absolute()).parent.absolute().parent.absol
 print(f"path: {path}")
 sys.path.insert(0, path)
 
+import codecs
 import re
 import datetime
 
@@ -31,7 +32,7 @@ from jinja2 import Environment, FileSystemLoader
 #     lstrip_blocks=True, trim_blocks=True, loader=package_loader
 # )
 
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
+env = Environment(loader=FileSystemLoader(r'D:\Users\j97300\OneDrive - ArcelorMittal\Documents\Python Projects\simple-report\simple_report\structure\html\templates'))
 
 class HtmlReport(object):
     
@@ -135,16 +136,10 @@ class HtmlReport(object):
         self.body[page_name] = ""
 
     def export(self, path):
-        with open(f'{path}/html_report.html', 'w') as f:
+        with codecs.open(f'{path}/html_report.html', 'w', "utf-8") as f:
             f.write(self.to_html())
 
     def add(self, element, page=None):
         if page is None:
             page = self.default_page
         self.body[page] += element.to_html()
-
-
-# <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
-# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-# <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-# <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
