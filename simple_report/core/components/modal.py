@@ -1,9 +1,6 @@
 import uuid
-from jinja2 import Environment, FileSystemLoader
-
 from simple_report.core.components.base import BaseElement
-
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
+from simple_report.structure.html.templates import jinja2_env
 
 
 class Modal(BaseElement):
@@ -24,6 +21,6 @@ class Modal(BaseElement):
             'toggle_text': self.toggle_text,
             'content': self.content
             }
-        template = env.get_template('modal.html')
+        template = jinja2_env.get_template('modal.html')
         rendered_template = template.render(content)
         return rendered_template

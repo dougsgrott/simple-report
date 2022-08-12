@@ -1,11 +1,6 @@
-
 from abc import ABC
-
-from jinja2 import Environment, FileSystemLoader
-
+from simple_report.structure.html.templates import jinja2_env
 from simple_report.core.components.base import BaseElement
-
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
 
 
 class TextElement(BaseElement, ABC):
@@ -26,7 +21,7 @@ class TextElement(BaseElement, ABC):
             'class_name':self.class_name,
             'text':self.text
             }
-        template = env.get_template('text.html')
+        template = jinja2_env.get_template('text.html')
         rendered_template = template.render(content)
         return rendered_template
 

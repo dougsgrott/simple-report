@@ -1,9 +1,6 @@
 import uuid
-from jinja2 import Environment, FileSystemLoader
-
 from simple_report.core.components.base import BaseElement
-
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
+from simple_report.structure.html.templates import jinja2_env
 
 
 class Table(object):
@@ -45,7 +42,7 @@ class Table(object):
             'caption': self.caption,
             'table': table,
         }
-        template = env.get_template('table.html')
+        template = jinja2_env.get_template('table.html')
         rendered_template = template.render(content)
         return rendered_template
 

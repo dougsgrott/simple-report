@@ -1,9 +1,6 @@
 import uuid
-from jinja2 import Environment, FileSystemLoader
-
 from simple_report.core.components.base import BaseElement
-
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
+from simple_report.structure.html.templates import jinja2_env
 
 
 class Collapse(BaseElement):
@@ -20,6 +17,6 @@ class Collapse(BaseElement):
             'toggle_text': self.toggle_text,
             'content': self.content
             }
-        template = env.get_template('collapse.html')
+        template = jinja2_env.get_template('collapse.html')
         rendered_template = template.render(content)
         return rendered_template

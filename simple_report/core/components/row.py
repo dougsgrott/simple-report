@@ -1,8 +1,6 @@
-
-from jinja2 import Environment, FileSystemLoader
+from simple_report.structure.html.templates import jinja2_env
 from simple_report.core.components.base import BaseElement
 
-env = Environment(loader=FileSystemLoader('simple_report/structure/html/templates'))
 
 class Row(BaseElement):
     def __init__(self, *children, show_border=False, **kwargs):
@@ -15,6 +13,6 @@ class Row(BaseElement):
             'children': self.children,
             'show_border': self.show_border
         }
-        template = env.get_template('row.html')
+        template = jinja2_env.get_template('row.html')
         rendered_template = template.render(content)
         return rendered_template
