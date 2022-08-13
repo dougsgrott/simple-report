@@ -13,7 +13,8 @@ import codecs
 import re
 import datetime
 
-from jinja2 import Environment, FileSystemLoader
+# from jinja2 import Environment, FileSystemLoader
+from simple_report.structure.html.templates import jinja2_env
 
 
 #%%
@@ -31,8 +32,6 @@ from jinja2 import Environment, FileSystemLoader
 # jinja2_env = jinja2.Environment(
 #     lstrip_blocks=True, trim_blocks=True, loader=package_loader
 # )
-
-env = Environment(loader=FileSystemLoader(r'D:\Users\j97300\OneDrive - ArcelorMittal\Documents\Python Projects\simple-report\simple_report\structure\html\templates'))
 
 class HtmlReport(object):
     
@@ -108,7 +107,7 @@ class HtmlReport(object):
             'author': self.author,
             'timestamp': self.timestamp,
         }
-        template = env.get_template('header.html')
+        template = jinja2_env.get_template('header.html')
         rendered_template = template.render(content)
         return rendered_template
 
@@ -127,7 +126,7 @@ class HtmlReport(object):
             'display_timestamp': self.display_timestamp,
             'timestamp_str': self.get_str_timestamp,
             }
-        template = env.get_template('report.html')
+        template = jinja2_env.get_template('report.html')
         rendered_template = template.render(content, zip=zip, enumerate=enumerate)
         return rendered_template
 
