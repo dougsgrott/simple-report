@@ -78,16 +78,23 @@ class Plot(BaseElement):
     #         .replace('<<figure_id>>', figure_id) \
     #         .replace('<<figure>>', figure.to_json())
 
-    def add_matplotlib_figure(self, figure: Figure, image_format='svg', page=None):
+    def add_matplotlib_figure(self, figure: Figure, image_format='png', page=None):
         # tmpfile = io.StringIO()
+        image_format = 'png'
         tmpfile = io.BytesIO()
         figure_type = type(figure).__name__
         if figure_type == 'FacetGrid':
             figure.savefig(tmpfile, format='png')
         elif figure_type == 'AxesSubplot':
             figure.figure.savefig(tmpfile, format='png')
+            result_string = plot_360_n0sc0pe(figure.figure, image_format)
+        elif figure_type == 'Figure':
+            figure.savefig(tmpfile, format='png')
+            result_string = plot_360_n0sc0pe(figure.figure, image_format)
+
         encoded_figure = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
-        return f"""<img class="img-fluid" src=\'data:image/png;base64,{encoded_figure}\'>"""
+        return f"""<img class="img-fluid text-center" src=\'{result_string}\'>"""
+        # return f"""<img class="img-fluid" src=\'data:image/png;base64,{encoded_figure}\'>"""
 
     def add_matplotlib_axes(self, figure: Axes, page=None):
         image_format = 'png'
@@ -106,7 +113,8 @@ class Plot(BaseElement):
             # return result_string.replace('<svg', '<svg class="img-fluid text-center"')
         else:
             # encoded_figure = base64.b64encode(result_string).decode('utf-8')
-            return f"""<img class="img-fluid text-center" src=\'data:image/png;base64,{result_string}\'>"""
+            return f"""<img class="img-fluid text-center" src=\'{result_string}\'>"""
+            # return f"""<img class="img-fluid text-center" src=\'data:image/png;base64,{result_string}\'>"""
 
         # return f"""<div class="img-fluid text-center">
         #         {result_string}
