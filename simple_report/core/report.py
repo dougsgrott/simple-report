@@ -5,9 +5,9 @@
 #%%
 from pathlib import Path
 import sys
-path = str(Path(Path(__file__).parent.absolute()).parent.absolute().parent.absolute().parent.absolute())
-print(f"path: {path}")
-sys.path.insert(0, path)
+# path = str(Path(Path(__file__).parent.absolute()).parent.absolute().parent.absolute().parent.absolute())
+# print(f"path: {path}")
+# sys.path.insert(0, path)
 
 import codecs
 import re
