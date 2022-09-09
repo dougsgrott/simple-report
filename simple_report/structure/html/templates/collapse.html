@@ -7,8 +7,9 @@
 
 <div id="bottom-{{ anchor_id }}" class="collapse" aria-expanded="false">
     <div class="card card-body">
-        {{ content.to_html() }}
-    </div>
+        {% for _content in content %}
+        {{ _content.to_html() }}
+        {% endfor %}    </div>
 </div>
 
 {% else %}
@@ -22,7 +23,9 @@
     </div>
     <div id="bottom-{{ anchor_id }}" class="collapse" aria-expanded="false">
         <div class="card-body">
-            {{ content.to_html() }}
+            {% for _content in content %}
+            {{ _content.to_html() }}
+            {% endfor %}
         </div>
     </div>
 </div>
