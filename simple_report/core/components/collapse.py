@@ -7,7 +7,7 @@ class Collapse(BaseElement):
     def __init__(self, use_panel, toggle_text, content, **kwargs):
         self.use_panel = use_panel
         self.toggle_text = toggle_text
-        self.content = [content] if not isinstance(content, list) else content
+        self.content = content if isinstance(content, list) else [content]
 
     def to_html(self):
         toggle_btn_id = uuid.uuid4().hex[:10].upper()

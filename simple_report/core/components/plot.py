@@ -85,6 +85,7 @@ class Plot(BaseElement):
         figure_type = type(figure).__name__
         if figure_type == 'FacetGrid':
             figure.savefig(tmpfile, format='png')
+            result_string = plot_360_n0sc0pe(figure.figure, image_format)
         elif figure_type == 'AxesSubplot':
             figure.figure.savefig(tmpfile, format='png')
             result_string = plot_360_n0sc0pe(figure.figure, image_format)
@@ -105,6 +106,11 @@ class Plot(BaseElement):
         elif figure_type == 'AxesSubplot':
             print(".... Adding AxesSubplot")
             result_string = plot_360_n0sc0pe(figure.figure, image_format)
+        elif figure_type == 'Axes':
+            print(".... Adding Axes")
+            result_string = plot_360_n0sc0pe(figure.figure, image_format)
+        else:
+            raise NotImplementedError(f"Figure type '{figure_type}' not supported")
 
         if image_format == 'svg':
             return f"""<div class="text-center">
