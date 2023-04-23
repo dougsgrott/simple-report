@@ -8,6 +8,7 @@ from .components.row import Row
 from .components.collapse import Collapse
 from .components.tabs import Tabs
 from .components.modal import Modal
+from .components.code import Code
 from .report import HtmlReport
 
 __all__ = [
@@ -23,5 +24,6 @@ __all__ = [
     "Collapse",
     "Tabs",
     "Modal",
+    "Code",
     "HtmlReport"
 ]

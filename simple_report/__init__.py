@@ -7,5 +7,6 @@ from .core import (
     Collapse,
     Tabs,
     Modal,
+    Code,
     HtmlReport
 )
