@@ -10,3 +10,5 @@ from .core import (
     Code,
     HtmlReport
 )
+
+__version__ = "0.0.20"
