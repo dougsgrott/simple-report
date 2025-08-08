@@ -14,5 +14,4 @@ sys.path.append(templates_path)
 
 jinja2_env = Environment(
     loader=FileSystemLoader(templates_path),
-    # autoescape=select_autoescape(['html', 'xml']),
 )

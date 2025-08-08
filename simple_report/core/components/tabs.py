@@ -11,7 +11,7 @@ class Tabs(BaseElement):
         for name, value in content.items():
             self.content[name] = value if isinstance(value, list) else [value]
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         tabs_id = uuid.uuid4().hex[:10].upper()
         content = {
             'use_tabs': self.use_tabs,

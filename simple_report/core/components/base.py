@@ -11,7 +11,7 @@ class BaseElement(ABC):
         self.kwargs = kwargs
 
     @abstractmethod
-    def to_html(self):
+    def to_html(self, **kwargs):
         pass
 
     def __str__(self):

@@ -14,7 +14,7 @@ class Modal(BaseElement):
         # self.body = kwargs.get('body', '')
         # self.footer = kwargs.get('footer', '')
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         anchor_id = uuid.uuid4().hex[:10].upper()
         content = {
             'anchor_id': anchor_id,

@@ -1,37 +1,10 @@
-"""
-
-"""
-
-#%%
 from pathlib import Path
 import sys
-# path = str(Path(Path(__file__).parent.absolute()).parent.absolute().parent.absolute().parent.absolute())
-# print(f"path: {path}")
-# sys.path.insert(0, path)
-
 import codecs
 import re
 import datetime
-
-# from jinja2 import Environment, FileSystemLoader
 from simple_report.structure.html.templates import jinja2_env
 
-
-#%%
-
-# # Initializing Jinja
-# package_loader = jinja2.PackageLoader(
-#     "pandas_profiling", "report/presentation/flavours/html/templates"
-# )
-
-# # Initializing Jinja
-# package_loader = jinja2.PackageLoader(
-#     "simple_report", "templates"
-# )
-
-# jinja2_env = jinja2.Environment(
-#     lstrip_blocks=True, trim_blocks=True, loader=package_loader
-# )
 
 class HtmlReport(object):
     
@@ -43,6 +16,7 @@ class HtmlReport(object):
         self.body = {page: "" for page in self.pages}
         self.background_color = background_color
         self.display_timestamp = display_timestamp
+        self.plotly_js_included = False
 
     @property
     def get_str_timestamp(self):
@@ -76,18 +50,6 @@ class HtmlReport(object):
             return ""
         else:
             return f"<p style='padding;0px; margin: 0px;'>Author: {str(self.author)}</p>"
-
-    # @property
-    # def header(self):
-    #     content = {
-    #         'report_title': self.report_title,
-    #         'project_name': self.project_name,
-    #         'author': self.author,
-    #         'timestamp': self.timestamp,
-    #     }
-    #     template = env.get_template('header.html')
-    #     rendered_template = template.render(content)
-    #     return rendered_template
 
     @property
     def nav_buttons(self):
@@ -141,4 +103,4 @@ class HtmlReport(object):
     def add(self, element, page=None):
         if page is None:
             page = self.default_page
-        self.body[page] += element.to_html()
+        self.body[page] += element.to_html(report=self)

@@ -29,7 +29,6 @@ def plot_360_n0sc0pe(figure, image_format) -> str: #config,
     if image_format not in mime_types:
         raise ValueError('Can only 360 n0sc0pe "png" or "svg" format.')
 
-    # if config.html.inline:
     if image_format == "svg":
         image_str = StringIO()
         figure.savefig(image_str, format=image_format)
@@ -40,8 +39,4 @@ def plot_360_n0sc0pe(figure, image_format) -> str: #config,
         result_string = base64_image(
             image_bytes.getvalue(), mime_types[image_format]
         )
-        # encoded_figure = base64.b64encode(tmpfile.getvalue()).decode('utf-8')
-        # self.body[page] += f"""<img src=\'data:image/png;base64,{encoded_figure}\'>"""
-
     return result_string
-

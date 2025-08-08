@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Remove all files and folders starting with _ign
+*_ign*

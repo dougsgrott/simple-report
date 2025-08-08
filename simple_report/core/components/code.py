@@ -12,7 +12,7 @@ class Code(BaseElement):
         super().__init__(**kwargs)
         self.text = text
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         content = {
             'id': self.id,
             'class_name':self.class_name,

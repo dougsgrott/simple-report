@@ -8,7 +8,7 @@ class Row(BaseElement):
         self.children = [value if isinstance(value, list) else [value] for value in children]
         self.show_border = show_border
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         content = {
             'children': self.children,
             'show_border': self.show_border

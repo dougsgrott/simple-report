@@ -14,7 +14,7 @@ class TextElement(BaseElement, ABC):
         self.element = element
         self.text = text
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         content = {
             'element': self.element,
             'id': self.id,
@@ -65,5 +65,5 @@ class List(object):
     def __init__(self, text_list):
         self.text_list = text_list if isinstance(text_list, list) else [text_list]
 
-    def to_html(self):
+    def to_html(self, **kwargs):
         return f"""<ul>{''.join(f'<li>{str(text)}</li>' for text in self.text_list)}</ul>"""
